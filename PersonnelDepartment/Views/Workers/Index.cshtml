@@ -1,0 +1,35 @@
+﻿@{
+}
+
+<h2 class="special-header" style="padding-bottom:12px">Штат работников предприятия</h2>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>№</th>
+            <th>Фамилия, инициалы</th>
+            <th>Фото</th>
+            <th>Образование</th>
+            <th>Должность</th>
+            <th>Статус</th>
+            <th>Свойства</th>
+        </tr>
+        @*@foreach (var news in Model.News)
+            {
+                <tr>
+                    <td>@news.Theme</td>
+                    <td>@news.Author</td>
+                    <td>
+                        <form asp-controller="Moderate" asp-action="DeleteNews" asp-route-id="@news.Id" method="post">
+                            <a class="btn btn-secondary" asp-controller="Admin" asp-action="EditNews" asp-route-id="@news.Id">Изменить новость</a>
+                            <button type="submit" class="btn btn-primary table-delete">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }*@
+    </table>
+</div>
+
+<a class="btn btn-primary" asp-controller="Workers" asp-action="Create">Новый</a>
