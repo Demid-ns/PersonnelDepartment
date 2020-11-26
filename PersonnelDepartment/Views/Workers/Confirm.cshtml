@@ -1,0 +1,32 @@
+﻿@model PersonnelDepartment.ViewModels.ConfirmViewModel
+
+@{
+}
+
+<p><h2 class="control-header" style="padding-bottom:12px">Верификация адреса электронной почты</h2></p>
+<p>На Ваш адрес отправлен одноразовый пароль.</p>
+<p>Введите его в поле и нажмите "Далее".</p>
+
+<form method="post" asp-controller="Workers" asp-action="Confirm">
+    <div class="form-row">
+        <div class="col-lg-4 col-12 validation">
+            <div asp-validation-summary="ModelOnly"></div>
+        </div>
+    </div>
+    <input asp-for="WorkerId" hidden="hidden" />
+    <div class="form-row">
+        <div class="col-lg-4 col-12">
+            <label asp-for="Password" class="login-label"></label><br />
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-6 col-12">
+            <a asp-controller="Workers" asp-action="Edit" asp-route-id="@Model.WorkerId" class="btn btn-secondary control-button">Назад</a>
+            <button type="submit" class="btn btn-primary control-button">
+                Далее
+            </button>
+        </div>
+    </div>
+</form>
