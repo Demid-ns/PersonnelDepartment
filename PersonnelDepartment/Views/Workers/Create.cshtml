@@ -1,0 +1,75 @@
+﻿@model PersonnelDepartment.ViewModels.CreateWorkerViewModel
+
+@{
+}
+
+<h2 class="control-header" style="padding-bottom:12px">Создать нового рабочего</h2>
+
+<form method="post" asp-controller="Workers" asp-action="Create">
+    <div class="form-row">
+        <div class="col-lg-4 col-12 validation">
+            <div asp-validation-summary="ModelOnly"></div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-4 col-12">
+            <label asp-for="FullName" class="login-label"></label><br />
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-2 col-12">
+            <label asp-for="Email" class="login-label"></label><br />
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="col-lg-2 col-12">
+            <label asp-for="EmailConfirmed" class="login-label"></label><br />
+            <input asp-for="EmailConfirmed" hidden="hidden" />
+            @if (Model != null && Model.EmailConfirmed)
+            {
+                <input placeholder="Подтвержден" disabled="disabled" class="form-control" />
+            }
+            else
+            {
+                <input placeholder="Не подтвержден" disabled="disabled" class="form-control" />
+            }
+            <span asp-validation-for="EmailConfirmed"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-2 col-12">
+            <label asp-for="Education" class="login-label"></label><br />
+            <input asp-for="Education" class="form-control" />
+            <span asp-validation-for="Education"></span>
+        </div>
+        <div class="col-lg-2 col-12">
+            <label asp-for="Position" class="login-label"></label><br />
+            <input asp-for="Position" class="form-control" />
+            <span asp-validation-for="Position"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-4 col-12">
+            <label asp-for="Status" class="login-label"></label><br />
+            <select asp-for="Status" class="form-control">
+                <option>Контракт</option>
+                <option>Постоянно</option>
+                <option>Временно</option>
+                <option>Уволен(а)</option>
+            </select>
+            <span asp-validation-for="Education"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-6 col-12">
+            <button asp-route-act="Index" type="submit" class="btn btn-primary control-button">Сохранить</button>
+            <a asp-controller="Workers" asp-action="Index" class="btn btn-secondary control-button">Назад</a>
+            <button type="submit" asp-route-act="Confirm" class="btn btn-secondary control-button">
+                Подтвердить E-mail
+            </button>
+        </div>
+    </div>
+</form>
+
