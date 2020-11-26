@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PersonnelDepartment.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersonnelDepartment
 {
@@ -23,7 +25,10 @@ namespace PersonnelDepartment
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<PDContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +46,8 @@ namespace PersonnelDepartment
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
