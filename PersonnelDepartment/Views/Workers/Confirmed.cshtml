@@ -1,0 +1,15 @@
+﻿@model PersonnelDepartment.Models.Worker
+
+@{
+}
+
+@if (Model.EmailConfirmed)
+{
+    <p style="color:limegreen">Верификация email-адреса успешно завершена!</p>
+}
+else
+{
+    <p style="color:red">Ошибка верификации!</p>
+}
+
+<a asp-controller="Workers" asp-action="Index" class="btn btn-primary control-button">На главную</a>
