@@ -9,10 +9,10 @@ namespace PersonnelDepartment.Models
     {
         public int Id { get; set; }
         public string FullName { get; set; }
-        public string Photo { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
         public string Education { get; set; }
         public string Position { get; set; }
         public string Status { get; set; }
-        public string Properties { get; set; }
     }
 }
