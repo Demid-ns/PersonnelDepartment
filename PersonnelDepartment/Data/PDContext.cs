@@ -10,7 +10,6 @@ namespace PersonnelDepartment.Data
     public class PDContext : DbContext
     {
         public DbSet<Worker> Workers { get; set; }
-        public DbSet<Password> Passwords { get; set; }
 
         public PDContext(DbContextOptions<PDContext> options)
             : base(options)
