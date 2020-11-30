@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace PersonnelDepartment.Controllers
 {
@@ -34,6 +35,13 @@ namespace PersonnelDepartment.Controllers
         {
             if (ModelState.IsValid)
             {
+                byte[] imageData = null;
+
+                using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
+                }
+
                 Worker worker = new Worker()
                 {
                     FullName = model.FullName,
@@ -41,7 +49,8 @@ namespace PersonnelDepartment.Controllers
                     Status = model.Status,
                     Email = model.Email,
                     EmailConfirmed = model.EmailConfirmed,
-                    Position = model.Position
+                    Position = model.Position,
+                    Avatar = imageData
                 };
 
                 await db.AddAsync(worker);
@@ -71,7 +80,8 @@ namespace PersonnelDepartment.Controllers
                         Email = worker.Email,
                         EmailConfirmed = worker.EmailConfirmed,
                         Position = worker.Position,
-                        Status = worker.Status
+                        Status = worker.Status,
+                        Picture = worker.Avatar
                     };
                     return View(workerView);
                 }
@@ -86,12 +96,25 @@ namespace PersonnelDepartment.Controllers
             {
                 Worker worker = await db.Workers.FindAsync(model.Id);
 
+                if (model.Avatar != null)
+                {
+                    byte[] imageData = null;
+
+                    using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
+                    {
+                        imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
+                    }
+
+                    worker.Avatar = imageData;
+                }
+
                 worker.FullName = model.FullName;
                 worker.Email = model.Email;
                 worker.EmailConfirmed = model.EmailConfirmed;
                 worker.Position = model.Position;
                 worker.Status = model.Status;
                 worker.Education = model.Education;
+
 
                 await db.SaveChangesAsync();
 
