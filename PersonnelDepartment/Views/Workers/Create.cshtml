@@ -5,10 +5,17 @@
 
 <h2 class="control-header" style="padding-bottom:12px">Создать нового рабочего</h2>
 
-<form method="post" asp-controller="Workers" asp-action="Create">
+<form method="post" asp-controller="Workers" asp-action="Create" enctype="multipart/form-data">
     <div class="form-row">
         <div class="col-lg-4 col-12 validation">
             <div asp-validation-summary="ModelOnly"></div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-4 col-12">
+            <label asp-for="Avatar" class="login-label"></label><br />
+            <input asp-for="Avatar" class="form-control-file" />
+            <span asp-validation-for="Avatar"></span>
         </div>
     </div>
     <div class="form-row">
