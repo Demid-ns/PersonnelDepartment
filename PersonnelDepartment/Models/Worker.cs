@@ -14,5 +14,6 @@ namespace PersonnelDepartment.Models
         public string Education { get; set; }
         public string Position { get; set; }
         public string Status { get; set; }
+        public byte[] Avatar { get; set; }
     }
 }
