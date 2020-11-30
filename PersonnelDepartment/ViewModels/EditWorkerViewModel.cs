@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using PersonnelDepartment.Models;
+using PersonnelDepartment.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +11,11 @@ namespace PersonnelDepartment.ViewModels
 {
     public class EditWorkerViewModel
     {
+        [Display(Name = "Change Avatar")]
+        [DataType(DataType.Upload)]
+        [MaxFileSize(5 * 1024 * 1024)]
+        [AllowedExtensions(new string[] { ".png" })]
+        public IFormFile Avatar { get; set; }
         [Required]
         public int Id { get; set; }
         [Required]
@@ -31,5 +39,7 @@ namespace PersonnelDepartment.ViewModels
         [MinLength(5)]
         [MaxLength(30)]
         public string Status { get; set; }
+
+        public byte[] Picture { get; set; }
     }
 }
