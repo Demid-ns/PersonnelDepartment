@@ -10,6 +10,7 @@
         <tr>
             <th>№</th>
             <th>Фамилия, инициалы</th>
+            <th>Фото</th>
             <th>Образование</th>
             <th>Должность</th>
             <th>Статус</th>
@@ -20,6 +21,7 @@
             <tr>
                 <td>@worker.Id</td>
                 <td>@worker.FullName</td>
+                <th><img style='width:80px; height:80px;' src="data:image/png;base64,@(Convert.ToBase64String(worker.Avatar))" /></th>
                 <td>@worker.Education</td>
                 <td>@worker.Position</td>
                 <td>@worker.Status</td>
