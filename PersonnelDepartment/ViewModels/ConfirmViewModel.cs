@@ -8,7 +8,6 @@ namespace PersonnelDepartment.ViewModels
 {
     public class ConfirmViewModel
     {
-        [Required]
         public int WorkerId { get; set; }
         [Required]
         [MinLength(36)]

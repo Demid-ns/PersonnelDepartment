@@ -16,7 +16,6 @@ namespace PersonnelDepartment.ViewModels
         [MaxFileSize(5 * 1024 * 1024)]
         [AllowedExtensions(new string[] { ".png" })]
         public IFormFile Avatar { get; set; }
-        [Required]
         public int Id { get; set; }
         [Required]
         [MinLength(5)]
